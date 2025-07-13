@@ -2,6 +2,7 @@ import TodoList from "../modules/TodoList";
 import Project from "../modules/Project";
 import Task from "../modules/Task";
 import displayProject from "../display/ProjectDisplayer";
+import addNewTaskDialog from "../display/newTaskDialog";
 
 export default class TodoController {
   constructor() {
@@ -10,7 +11,35 @@ export default class TodoController {
     this.init();
   }
 
-  init() {}
+  init() {
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    document.addEventListener("click", (e) => {
+      if (e.target.matches("#add-new-task-btn")) {
+        addNewTaskDialog();
+        const dialog = document.getElementById("new-task-dialog");
+        dialog.showModal();
+      } else if (e.target.closest(".delete-task-btn")) {
+        const taskId = e.target.closest("[data-id]").dataset.id;
+        this.deleteTask(taskId);
+      } else if (e.target.closest(".mark-done-btn")) {
+      }
+    });
+
+    document.addEventListener("submit", (e) => {
+      if (e.target.matches("#new-task-form")) {
+        e.preventDefault();
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const newTask = new Task(title, description);
+        this.addTask(newTask);
+
+        document.getElementById("new-task-dialog").close();
+      }
+    });
+  }
 
   addTask(task) {
     const project = this.todoList.getProject(this.currentProject);
