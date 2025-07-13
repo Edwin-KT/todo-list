@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/* // max-width: revert; if you want to let it grow to, let's say, 120% */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:root {
+  --background-color: #140b1e;
+  --text-color: #9e78cf;
+  --task-background-color: #15101c;
+}
+
+* {
+  color: white;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: "Inter", sans-serif;
+}
+
+#selected-project {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#project-title {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+#add-new-task-btn {
+  margin-bottom: 2rem;
+  background-color: #9e78cf;
+  border: none;
+  padding: 0.6rem 1.2rem;
+}
+
+#tasks-to-do-title {
+  margin-bottom: 1rem;
+}
+
+#tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.task-div {
+  display: flex;
+  background-color: var(--task-background-color);
+  padding: 1rem 4rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: min(3rem);
+}
+
+.task-div button {
+  color: var(--text-color);
+  border: none;
+  background-color: transparent;
+}
+
+.delete-task-btn {
+  width: 2rem;
+  height: auto;
+}
