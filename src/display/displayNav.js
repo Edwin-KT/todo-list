@@ -13,15 +13,20 @@ function createNavToggleBtn() {
 function hideNav() {
   const navContainer = document.getElementById("side-nav");
   const navToggleBtn = createNavToggleBtn();
+  navToggleBtn.style.position = "absolute";
   navContainer.innerHTML = "";
   navContainer.append(navToggleBtn);
+  navContainer.style.backgroundColor = "transparent";
+  navContainer.style.paddingRight = "0";
 }
 
 function displayNav(projects) {
   const navContainer = document.getElementById("side-nav");
+  navContainer.style.paddingRight = "";
   navContainer.innerHTML = "";
+  navContainer.style.backgroundColor = "#00000062";
   const navToggleBtn = createNavToggleBtn();
-
+  navToggleBtn.style.position = "static";
   const projectsSection = document.createElement("div");
   projectsSection.id = "nav-projects";
   const projectsTitle = document.createElement("p");
