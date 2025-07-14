@@ -64,6 +64,10 @@ body {
   min-height: 100vh;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 #selected-project {
   display: flex;
   flex-direction: column;
@@ -73,7 +77,7 @@ body {
 
 #project-title {
   font-size: 1.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 #add-new-task-btn {
@@ -132,7 +136,6 @@ nav {
   flex-direction: column;
   gap: 4rem;
   padding: 4rem;
-  position: relative;
 }
 
 #nav-projects {
@@ -146,4 +149,12 @@ nav {
   text-decoration: underline;
   font-weight: bolder;
   margin-bottom: 1rem;
+}
+
+#add-new-project-btn {
+  margin-bottom: 2rem;
+  background-color: #9e78cf;
+  border: none;
+  padding: 0.2rem 0.6rem;
+  margin-left: 8px;
 }
