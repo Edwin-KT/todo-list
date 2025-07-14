@@ -14,6 +14,7 @@ export default class TodoController {
   }
 
   init() {
+    this.addProject(new Project("My Project"));
     this.setupEventListeners();
   }
 
@@ -31,13 +32,21 @@ export default class TodoController {
         const projectButton = e.target.closest(".project-selector-btn");
         const projectName = projectButton.textContent.trim();
         this.switchToProject(this.todoList.getProject(projectName));
-      } else if (e.target.closest("#nav-toggle-btn")) {
+      } else if (e.target.matches("#nav-toggle-btn")) {
         if (this.isNavOpen) {
           hideNav();
           this.isNavOpen = false;
         } else {
           displayNav(this.todoList.projects);
           this.isNavOpen = true;
+        }
+      } else if (e.target.matches("#add-new-project-btn")) {
+        const input = document.getElementById("project-input");
+        const projectText = input.value.trim();
+
+        if (projectText) {
+          const newProject = new Project(projectText);
+          this.addProject(newProject);
         }
       }
     });

@@ -32,7 +32,21 @@ function displayNav(projects) {
   const projectsTitle = document.createElement("p");
   projectsTitle.textContent = "PROJECTS";
   projectsTitle.id = "nav-projects-title";
-  projectsSection.append(projectsTitle);
+
+  const addProjectContainer = document.createElement("div");
+
+  const addProjectInput = document.createElement("input");
+  addProjectInput.type = "text";
+  addProjectInput.id = "project-input";
+  addProjectInput.placeholder = "Enter Project Name...";
+
+  const addProjectBtn = document.createElement("button");
+  addProjectBtn.textContent = "+";
+  addProjectBtn.id = "add-new-project-btn";
+
+  addProjectContainer.append(addProjectInput, addProjectBtn);
+
+  projectsSection.append(projectsTitle, addProjectContainer);
 
   projects.forEach((project) => {
     const projectElement = document.createElement("button");
