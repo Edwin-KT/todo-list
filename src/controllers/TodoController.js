@@ -48,6 +48,10 @@ export default class TodoController {
           const newProject = new Project(projectText);
           this.addProject(newProject);
         }
+      } else if (e.target.closest(".delete-project-btn")) {
+        const projectName = e.target.closest(".delete-project-btn").dataset
+          .projectName;
+        this.deleteProject(projectName);
       }
     });
 
@@ -74,6 +78,20 @@ export default class TodoController {
     this.todoList.addProject(project);
     this.currentProject = project.name;
     displayProject(project);
+    displayNav(this.todoList.projects);
+  }
+
+  deleteProject(projectName) {
+    this.todoList.removeProject(projectName);
+
+    if (this.currentProject === projectName) {
+      this.currentProject =
+        this.todoList.projects.size > 0
+          ? this.todoList.projects.keys().next().value
+          : null;
+    }
+
+    displayProject(this.todoList.getProject(this.currentProject));
     displayNav(this.todoList.projects);
   }
 
