@@ -1,9 +1,15 @@
 import delTaskIcon from "../media/icons/task-div/delete-task-icon.svg";
+import Project from "../modules/Project";
 
 export default function displayProject(project) {
   const projectContainer = document.getElementById("selected-project");
-  projectContainer.innerHTML = "";
 
+  if (!project || !(project instanceof Project)) {
+    projectContainer.innerHTML = "<p>No project selected</p>";
+    return;
+  }
+
+  projectContainer.innerHTML = "";
   const title = document.createElement("p");
   title.textContent = `${project.name}`;
   title.id = "project-title";
@@ -15,7 +21,8 @@ export default function displayProject(project) {
   const tasksContainer = document.createElement("div");
   tasksContainer.id = "tasks-container";
   const tasksToDoTitle = document.createElement("p");
-  tasksToDoTitle.textContent = `Tasks to do - ${project.tasks.size}`;
+  const taskCount = project.tasks ? project.tasks.size : 0;
+  tasksToDoTitle.textContent = `Tasks to do - ${taskCount}`;
   tasksToDoTitle.id = "tasks-to-do-title";
   tasksContainer.append(tasksToDoTitle);
   project.tasks.forEach((task) => {
