@@ -24,9 +24,9 @@ export default class TodoList {
     return false;
   }
 
-  removeProject(project) {
-    if (this.#projects.has(project.name)) {
-      this.#projects.delete(project.name);
+  removeProject(projectName) {
+    if (this.#projects.has(projectName)) {
+      this.#projects.delete(projectName);
       return true;
     }
     return false;
