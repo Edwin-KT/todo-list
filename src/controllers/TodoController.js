@@ -14,7 +14,8 @@ export default class TodoController {
   }
 
   init() {
-    this.addProject(new Project("My Project"));
+    displayProject(this.currentProject);
+    displayNav(this.todoList.projects);
     this.setupEventListeners();
   }
 
