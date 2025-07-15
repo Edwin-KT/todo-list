@@ -1,4 +1,5 @@
 import menuIcon from "../media/icons/nav/menu-icon.svg";
+import delIcon from "../media/icons/nav/delete-project-icon.svg";
 
 function createNavToggleBtn() {
   const navToggleBtn = document.createElement("button");
@@ -13,7 +14,6 @@ function createNavToggleBtn() {
 function hideNav() {
   const navContainer = document.getElementById("side-nav");
   const navToggleBtn = createNavToggleBtn();
-  navToggleBtn.style.position = "absolute";
   navContainer.innerHTML = "";
   navContainer.append(navToggleBtn);
   navContainer.style.backgroundColor = "transparent";
@@ -26,7 +26,6 @@ function displayNav(projects) {
   navContainer.innerHTML = "";
   navContainer.style.backgroundColor = "#00000062";
   const navToggleBtn = createNavToggleBtn();
-  navToggleBtn.style.position = "static";
   const projectsSection = document.createElement("div");
   projectsSection.id = "nav-projects";
   const projectsTitle = document.createElement("p");
@@ -48,11 +47,30 @@ function displayNav(projects) {
 
   projectsSection.append(projectsTitle, addProjectContainer);
 
+  if (projects.size === 0) {
+    navContainer.append(navToggleBtn, projectsSection);
+    return;
+  }
+
   projects.forEach((project) => {
-    const projectElement = document.createElement("button");
-    projectElement.textContent = `${project.name}`;
-    projectElement.className = "project-selector-btn";
-    projectsSection.append(projectElement);
+    const projectDiv = document.createElement("div");
+    projectDiv.classList.add("project-element");
+
+    const projectBtn = document.createElement("button");
+    projectBtn.textContent = `${project.name}`;
+    projectBtn.className = "project-selector-btn";
+
+    const projectDelBtn = document.createElement("button");
+    projectDelBtn.classList.add("delete-project-btn");
+    const delBtnIcon = new Image();
+    delBtnIcon.src = delIcon;
+    delBtnIcon.alt = "Delete Project";
+    projectDelBtn.dataset.projectName = `${project.name}`;
+    projectDelBtn.append(delBtnIcon);
+
+    projectDiv.append(projectBtn, projectDelBtn);
+
+    projectsSection.append(projectDiv);
   });
 
   navContainer.append(navToggleBtn, projectsSection);
