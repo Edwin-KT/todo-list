@@ -50,6 +50,7 @@ h6 {
   --text-color: #9e78cf;
   --task-background-color: #15101c;
   --nav-color: ;
+  --done-task-color: #78cfb0;
 }
 
 * {
@@ -168,4 +169,9 @@ nav {
 
 .delete-project-btn {
   width: 1.6rem;
+}
+
+.done-task {
+  color: var(--done-task-color);
+  text-decoration: line-through;
 }
