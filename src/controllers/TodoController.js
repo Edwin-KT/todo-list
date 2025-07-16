@@ -29,6 +29,7 @@ export default class TodoController {
         const taskId = e.target.closest("[data-id]").dataset.id;
         this.deleteTask(taskId);
       } else if (e.target.closest(".mark-done-btn")) {
+        this.markTaskAsDone(e.target.closest("[data-id]").dataset.id);
       } else if (e.target.closest(".project-selector-btn")) {
         const projectButton = e.target.closest(".project-selector-btn");
         const projectName = projectButton.textContent.trim();
@@ -99,6 +100,12 @@ export default class TodoController {
   deleteTask(taskID) {
     this.todoList.getProject(this.currentProject).removeTask(taskID);
     displayProject(this.todoList.getProject(this.currentProject));
+  }
+
+  markTaskAsDone(taskID) {
+    const project = this.todoList.getProject(this.currentProject);
+    project.doTask(taskID);
+    displayProject(project);
   }
 
   switchToProject(project) {
