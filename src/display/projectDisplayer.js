@@ -25,6 +25,14 @@ export default function displayProject(project) {
   tasksToDoTitle.textContent = `Tasks to do - ${taskCount}`;
   tasksToDoTitle.id = "tasks-to-do-title";
   tasksContainer.append(tasksToDoTitle);
+
+  const doneTasksContainer = document.createElement("div");
+  doneTasksContainer.id = "done-tasks-container";
+  const doneTasksTitle = document.createElement("p");
+  doneTasksTitle.textContent = "Done Tasks";
+  doneTasksTitle.id = "done-tasks-title";
+  doneTasksContainer.append(doneTasksTitle);
+
   project.tasks.forEach((task) => {
     const taskDiv = document.createElement("div");
     const taskTitle = document.createElement("p");
@@ -34,24 +42,34 @@ export default function displayProject(project) {
 
     taskDiv.append(taskTitle);
 
-    const markDoneBtn = document.createElement("button");
-    markDoneBtn.innerHTML = "&#10003;";
-    markDoneBtn.classList.add("mark-done-btn");
-
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-task-btn");
     const deleteIcon = new Image();
     deleteIcon.src = delTaskIcon;
     deleteIcon.alt = "Delete";
-
     deleteBtn.appendChild(deleteIcon);
-
     const buttonsContainer = document.createElement("div");
-    buttonsContainer.append(markDoneBtn, deleteBtn);
-    taskDiv.append(buttonsContainer);
+    if (task.isDone) {
+      buttonsContainer.append(deleteBtn);
+      taskDiv.append(buttonsContainer);
+      taskTitle.classList.add("done-task");
+      doneTasksContainer.append(taskDiv);
+    } else {
+      const markDoneBtn = document.createElement("button");
+      markDoneBtn.innerHTML = "&#10003;";
+      markDoneBtn.classList.add("mark-done-btn");
 
-    tasksContainer.append(taskDiv);
+      buttonsContainer.append(markDoneBtn, deleteBtn);
+      taskDiv.append(buttonsContainer);
+
+      tasksContainer.append(taskDiv);
+    }
   });
 
-  projectContainer.append(title, addNewTaskBtn, tasksContainer);
+  projectContainer.append(
+    title,
+    addNewTaskBtn,
+    tasksContainer,
+    doneTasksContainer
+  );
 }
