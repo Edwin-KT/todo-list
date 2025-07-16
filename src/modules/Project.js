@@ -32,4 +32,10 @@ export default class Project {
     }
     return false;
   }
+
+  doTask(taskId) {
+    if (this.#tasks.has(taskId)) {
+      this.#tasks.get(taskId).markDone();
+    }
+  }
 }
