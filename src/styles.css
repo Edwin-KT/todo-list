@@ -88,6 +88,38 @@ button:hover {
   padding: 0.6rem 1.2rem;
 }
 
+#new-task-dialog {
+  position: absolute;
+  top: 38vh;
+  left: 42vw;
+}
+
+#new-task-form {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+#save-task-btn {
+  color: var(--text-color);
+  border: none;
+  border-radius: 2px;
+  padding: 0.2rem 0.6rem;
+  background-color: var(--background-color);
+  position: absolute;
+  bottom: 0.4rem;
+  right: 0.1rem;
+}
+
+#new-task-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#new-task-form > div > label {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
 #tasks-to-do-title {
   margin-bottom: 1rem;
 }
