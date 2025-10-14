@@ -15,6 +15,7 @@ export default function addNewTaskDialog() {
   const saveTaskBtn = document.createElement("button");
   saveTaskBtn.setAttribute("type", "submit");
   saveTaskBtn.id = "save-task-btn";
+  saveTaskBtn.textContent = "Save Task";
 
   dialogForm.append(titlePair, descriptionPair, saveTaskBtn);
 
