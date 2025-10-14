@@ -42,4 +42,20 @@ export default class TodoList {
     });
     return allTasks;
   }
+
+  toObject() {
+    return {
+      projects: Array.from(this.#projects.values()).map((project) =>
+        project.toObject()
+      ),
+    };
+  }
+
+  static fromObject(data) {
+    const todoList = new TodoList();
+    data.projects.forEach((projectObj) => {
+      todoList.addProject(Project.fromObject(projectObj));
+    });
+    return todoList;
+  }
 }

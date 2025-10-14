@@ -14,9 +14,27 @@ export default class TodoController {
   }
 
   init() {
+    this.loadFromStorage();
     displayProject(this.currentProject);
     displayNav(this.todoList.projects);
     this.setupEventListeners();
+  }
+
+  loadFromStorage() {
+    const savedData = localStorage.getItem("todoAppData");
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      this.todoList = TodoList.fromObject(parsedData.todoList);
+      this.currentProject = parsedData.currentProject;
+    }
+  }
+
+  saveToStorage() {
+    const data = {
+      todoList: this.todoList.toObject(),
+      currentProject: this.currentProject,
+    };
+    localStorage.setItem("todoAppData", JSON.stringify(data));
   }
 
   setupEventListeners() {
@@ -74,6 +92,7 @@ export default class TodoController {
     const project = this.todoList.getProject(this.currentProject);
     project.addTask(task);
     displayProject(project);
+    this.saveToStorage();
   }
 
   addProject(project) {
@@ -81,6 +100,7 @@ export default class TodoController {
     this.currentProject = project.name;
     displayProject(project);
     displayNav(this.todoList.projects);
+    this.saveToStorage();
   }
 
   deleteProject(projectName) {
@@ -95,21 +115,25 @@ export default class TodoController {
 
     displayProject(this.todoList.getProject(this.currentProject));
     displayNav(this.todoList.projects);
+    this.saveToStorage();
   }
 
   deleteTask(taskID) {
     this.todoList.getProject(this.currentProject).removeTask(taskID);
     displayProject(this.todoList.getProject(this.currentProject));
+    this.saveToStorage();
   }
 
   markTaskAsDone(taskID) {
     const project = this.todoList.getProject(this.currentProject);
     project.doTask(taskID);
     displayProject(project);
+    this.saveToStorage();
   }
 
   switchToProject(project) {
     this.currentProject = project.name;
     displayProject(project);
+    this.saveToStorage();
   }
 }

@@ -26,4 +26,20 @@ export default class Task {
   markDone() {
     this.#isDone = true;
   }
+
+  toObject() {
+    return {
+      title: this.#title,
+      description: this.#description,
+      id: this.#id,
+      isDone: this.#isDone,
+    };
+  }
+
+  static fromObject(data) {
+    const task = new Task(data.title, data.description);
+    task.#id = data.id;
+    task.#isDone = data.isDone;
+    return task;
+  }
 }

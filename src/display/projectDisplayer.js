@@ -33,7 +33,8 @@ export default function displayProject(project) {
   doneTasksTitle.id = "done-tasks-title";
   doneTasksContainer.append(doneTasksTitle);
 
-  project.tasks.forEach((task) => {
+  const tasks = project.tasks || new Map();
+  tasks.forEach((task) => {
     const taskDiv = document.createElement("div");
     const taskTitle = document.createElement("p");
     taskTitle.textContent = `${task.title}`;

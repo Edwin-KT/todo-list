@@ -96,6 +96,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  margin-bottom: 3rem;
 }
 
 .task-div {

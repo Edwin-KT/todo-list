@@ -1,3 +1,5 @@
+import Task from "./Task";
+
 export default class Project {
   #id;
   #name;
@@ -37,5 +39,21 @@ export default class Project {
     if (this.#tasks.has(taskId)) {
       this.#tasks.get(taskId).markDone();
     }
+  }
+
+  toObject() {
+    return {
+      name: this.#name,
+      id: this.#id,
+      tasks: Array.from(this.#tasks.values()).map((task) => task.toObject()),
+    };
+  }
+
+  static fromObject(data) {
+    const project = new Project(data.name, data.id);
+    data.tasks.forEach((taskObj) => {
+      project.addTask(Task.fromObject(taskObj));
+    });
+    return project;
   }
 }
