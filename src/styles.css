@@ -176,3 +176,7 @@ nav {
   color: var(--done-task-color);
   text-decoration: line-through;
 }
+
+input {
+  color: black;
+}
