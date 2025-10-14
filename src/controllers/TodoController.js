@@ -1,7 +1,7 @@
 import TodoList from "../modules/TodoList";
 import Project from "../modules/Project";
 import Task from "../modules/Task";
-import displayProject from "../display/ProjectDisplayer";
+import displayProject from "../display/projectDisplayer";
 import addNewTaskDialog from "../display/newTaskDialog";
 import { displayNav, hideNav } from "../display/displayNav";
 
